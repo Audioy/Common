@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  Common
+
+  Created by Audioy Ltd on 10/12/2017.
+  Copyright © 2017 Audioy. All rights reserved.
+*/
+
+// ViewController+BackButton
+"viewcontroller+backbutton:button:back" = "Back";
+"viewcontroller+backbutton:button:dismiss" = "Dismiss";
