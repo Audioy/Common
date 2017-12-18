@@ -12,6 +12,8 @@ import UIKit
 public extension UIColor{
     // Class because it is implemented by a class
     class var ghostWhite: UIColor { return UIColor.hex("F8F8FF") }
+
+    class var superRed: UIColor { return UIColor.red }
     
     class var random: UIColor {
         let hue : CGFloat = CGFloat(arc4random() % 256) / 256 // use 256 to get full range from 0.0 to 1.0

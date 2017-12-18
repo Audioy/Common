@@ -1,5 +1,5 @@
 //
-//  ViewController+BackButton.swift
+//  UIViewControllerWithBackButton.swift
 //  Common
 //
 //  Created by Audioy Ltd on 10/12/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class ViewController_BackButton: UIViewController {
+open class UIViewControllerWithBackButton: UIViewController {
 
     public enum BackAction{
         case pop
@@ -41,7 +41,7 @@ open class ViewController_BackButton: UIViewController {
         // Do any additional setup after loading the view.
         view.addSubview(backButton)
 
-        let bundle = Bundle(for: ViewController_BackButton.self)
+        let bundle = Bundle(for: UIViewControllerWithBackButton.self)
 
         switch backAction {
         case .pop:
