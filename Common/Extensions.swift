@@ -102,3 +102,64 @@ public extension String{
     }
     //var localised: String { return NSLocalizedString(self, comment: "") }
 }
+
+// Make cell identifiers reusable for collection views
+// Source: https://medium.com/@gonzalezreal/ios-cell-registration-reusing-with-swift-protocol-extensions-and-generics-c5ac4fb5b75e#.3ey5f2nvs
+
+public protocol ReusableView: class {}
+
+public extension ReusableView where Self: UIView {
+
+    static var reuseIdentifier: String {
+        return String(describing: self)
+    }
+}
+
+//extension UICollectionViewCell: ReusableView {}
+extension UICollectionReusableView: ReusableView {}
+
+public extension UICollectionView {
+
+    func register<T: UICollectionViewCell>(_: T.Type){
+        register(T.self, forCellWithReuseIdentifier: T.reuseIdentifier)
+    }
+
+    func dequeueReusableCell<T: UICollectionViewCell>(forIndexPath indexPath: IndexPath) -> T{
+        guard let cell = dequeueReusableCell(withReuseIdentifier: T.reuseIdentifier, for: indexPath) as? T else{
+            fatalError("Could not dequeue cell with identifier: \(T.reuseIdentifier)")
+        }
+        return cell
+    }
+
+    func registerHeader<T: UICollectionReusableView>(_: T.Type){
+        register(T.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: T.reuseIdentifier)
+    }
+
+    func registerFooter<T: UICollectionReusableView>(_: T.Type){
+        register(T.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: T.reuseIdentifier)
+    }
+
+    func dequeueReusableHeader<T: UICollectionReusableView>(forIndexPath indexPath: IndexPath) -> T{
+        guard let reusableView = dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: T.reuseIdentifier, for: indexPath) as? T else {
+            fatalError("Could not dequeue header with identifier: \(T.reuseIdentifier)")
+        }
+        return reusableView
+    }
+
+    func dequeueReusableFooter<T: UICollectionReusableView>(forIndexPath indexPath: IndexPath) -> T{
+        guard let reusableView = dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: T.reuseIdentifier, for: indexPath) as? T else {
+            fatalError("Could not dequeue footer with identifier: \(T.reuseIdentifier)")
+        }
+        return reusableView
+    }
+}
+
+// This function makes sure the index is in the array by using the "safe" keyword
+// Example: if let item = array[safe: index] { .. }
+// Source: http://stackoverflow.com/questions/25329186/safe-bounds-checked-array-lookup-in-swift-through-optional-bindings
+public extension Collection {
+    /// Returns the element at the specified index iff it is within bounds, otherwise nil.
+    subscript (safe index: Index) -> Iterator.Element? {
+        return index >= startIndex && index < endIndex ? self[index] : nil
+    }
+}
