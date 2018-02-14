@@ -163,3 +163,12 @@ public extension Collection {
         return index >= startIndex && index < endIndex ? self[index] : nil
     }
 }
+
+public extension Dictionary {
+    init(_ keys: [Key], _ values: [Value]) {
+        self.init()
+        for (key, value) in zip(keys, values) {
+            self[key] = value
+        }
+    }
+}
