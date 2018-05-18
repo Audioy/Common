@@ -10,6 +10,7 @@
 		525765951FDD906700001851 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5257658B1FDD906700001851 /* Common.framework */; };
 		5257659C1FDD906700001851 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 5257658E1FDD906700001851 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		525765A81FDD918E00001851 /* DateUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525765A71FDD918E00001851 /* DateUtilities.swift */; };
+		5262457820AEE19600D2D6D7 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5262457720AEE19600D2D6D7 /* UIViewController+Extensions.swift */; };
 		52A1D418203480630044A569 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1D417203480630044A569 /* UIColor+Extensions.swift */; };
 		52A1D41A203480A80044A569 /* NSLayoutConstraint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1D419203480A80044A569 /* NSLayoutConstraint+Extensions.swift */; };
 		52A1D41C203480C80044A569 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1D41B203480C80044A569 /* String+Extensions.swift */; };
@@ -44,6 +45,7 @@
 		525765941FDD906700001851 /* CommonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CommonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5257659B1FDD906700001851 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		525765A71FDD918E00001851 /* DateUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtilities.swift; sourceTree = "<group>"; };
+		5262457720AEE19600D2D6D7 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		52A1D417203480630044A569 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		52A1D419203480A80044A569 /* NSLayoutConstraint+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Extensions.swift"; sourceTree = "<group>"; };
 		52A1D41B203480C80044A569 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				52A1D41D203480FF0044A569 /* UICollectionView+Extensions.swift */,
 				52A1D41F203481270044A569 /* Dictionary+Extensions.swift */,
 				52A1D4212034813E0044A569 /* Collection+Extensions.swift */,
+				5262457720AEE19600D2D6D7 /* UIViewController+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 			files = (
 				52D30D3A1FDD94AC0000C83F /* UIViewControllerWithBackButton.swift in Sources */,
 				52A1D41C203480C80044A569 /* String+Extensions.swift in Sources */,
+				5262457820AEE19600D2D6D7 /* UIViewController+Extensions.swift in Sources */,
 				52A1D420203481270044A569 /* Dictionary+Extensions.swift in Sources */,
 				52A1D41A203480A80044A569 /* NSLayoutConstraint+Extensions.swift in Sources */,
 				52A1D418203480630044A569 /* UIColor+Extensions.swift in Sources */,
