@@ -30,8 +30,4 @@ public extension String{
         return NSLocalizedString(self, tableName: nil, bundle: bundle, value: "", comment: "")
     }
     //var localised: String { return NSLocalizedString(self, comment: "") }
-
-    var titleThenArtistFormat: String {
-        return self.components(separatedBy: " - ").reversed().joined(separator: "\n")
-    }
 }

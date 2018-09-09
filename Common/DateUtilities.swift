@@ -26,7 +26,7 @@ let localDateFormatter: DateFormatter = {
     return dateFormatter
 }()
 
-public extension Date{
+public extension Date {
     var asUTCString: String {
         return UTCDateFormatter.string(from: self)
     }
@@ -51,6 +51,16 @@ public extension Date{
         let date2 = calendar.startOfDay(for: dateToCompare)
         let unitFlags = Set<Calendar.Component>([.day])
         let components = calendar.dateComponents(unitFlags, from: date1, to: date2)
+        return components.day
+    }
+
+    static func numberOfDays(between startDate: Date, and endDate: Date) -> Int? {
+        let calendar = NSCalendar.current
+
+        let date1 = calendar.startOfDay(for: startDate)
+        let date2 = calendar.startOfDay(for: endDate)
+
+        let components = calendar.dateComponents([.day], from: date1, to: date2)
         return components.day
     }
 }
