@@ -11,16 +11,16 @@ import Foundation
 public extension UIViewController {
     // Source: https://medium.com/@johnsundell/using-child-view-controllers-as-plugins-in-swift-458e6b277b54
     func add(_ child: UIViewController) {
-        addChildViewController(child)
+        addChild(child)
         view.addSubview(child.view)
-        child.didMove(toParentViewController: self)
+        child.didMove(toParent: self)
     }
     func remove() {
         guard parent != nil else {
             return
         }
-        willMove(toParentViewController: nil)
-        removeFromParentViewController()
+        willMove(toParent: nil)
+        removeFromParent()
         view.removeFromSuperview()
     }
 }

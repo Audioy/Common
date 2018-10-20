@@ -14,15 +14,15 @@ public extension String{
         get {
             let textRange = NSMakeRange(0, self.count)
             let attributedText = NSMutableAttributedString(string: self)
-            attributedText.addAttribute(NSAttributedStringKey.underlineStyle , value: NSUnderlineStyle.styleSingle.rawValue, range: textRange)
+            attributedText.addAttribute(NSAttributedString.Key.underlineStyle , value: NSUnderlineStyle.single.rawValue, range: textRange)
             return attributedText
         }
     }
     func underlined(withColour colour: UIColor) -> NSAttributedString{
         let textRange = NSMakeRange(0, self.count)
         let attributedText = NSMutableAttributedString(string: self)
-        attributedText.addAttribute(NSAttributedStringKey.underlineStyle , value: NSUnderlineStyle.styleSingle.rawValue, range: textRange)
-        attributedText.addAttribute(NSAttributedStringKey.foregroundColor, value: colour, range: textRange)
+        attributedText.addAttribute(NSAttributedString.Key.underlineStyle , value: NSUnderlineStyle.single.rawValue, range: textRange)
+        attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: colour, range: textRange)
         return attributedText
     }
 
