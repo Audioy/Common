@@ -63,9 +63,6 @@ public extension Date {
 
             let components = calendar.dateComponents(Set<Calendar.Component>([.hour, .minute, .second]), from: fromDate, to: toDate)
 
-            print(delta)
-            print(components)
-
             guard let deltaDay = delta.day else {
                 return "Couldn't calculate the date"
             }
@@ -245,6 +242,27 @@ public extension Date {
         components.minute = minute
         components.second = second
         return calendar.date(from: components)
+    }
+
+    static func timeElapsed(between startDate: Date, and endDate: Date) -> String {
+        let calendar = NSCalendar.current
+
+        let components = calendar.dateComponents([.day, .hour, .minute, .second], from: startDate, to: endDate)
+        var returnedString = ""
+        if let second = components.second, second > 0 {
+            returnedString.insert(contentsOf: "\(second)" + "s", at: returnedString.startIndex)
+        }
+        if let minute = components.minute, (returnedString.count > 0 || minute > 0) {
+            returnedString.insert(contentsOf: "\(minute)" + "m", at: returnedString.startIndex)
+        }
+        if let hour = components.hour, (returnedString.count > 0 || hour > 0) {
+            returnedString.insert(contentsOf: "\(hour)" + "h", at: returnedString.startIndex)
+        }
+        if let day = components.day, (returnedString.count > 0 || day > 0) {
+            returnedString.insert(contentsOf: "\(day)" + "d", at: returnedString.startIndex)
+        }
+
+        return returnedString
     }
 }
 

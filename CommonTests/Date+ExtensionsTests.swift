@@ -1,5 +1,5 @@
 //
-//  DateUtilitiesTests.swift
+//  Date+ExtensionsTests.swift
 //  CommonTests
 //
 //  Created by John Neumann on 20/10/2018.
@@ -8,10 +8,13 @@
 
 import XCTest
 
-class DateUtilitiesTests: XCTestCase {
+class DateExtensionsTests: XCTestCase {
 
     private let laterDate = Date.with(day: 20, month: 10, year: 2018, hour: 12, minute: 03, second: 14)! // Saturday
+}
 
+// String Builder
+extension DateExtensionsTests {
     // No Threshold
     func testStringBuilderWithNoThresholdForDateAWeekOrOlder() {
         let earlierDate = laterDate.removing(numberOfDays: 7) // Saturday
@@ -222,17 +225,57 @@ class DateUtilitiesTests: XCTestCase {
             .build()
         XCTAssertEqual(dateString, "Today at 09:03:14")
     }
+}
 
-    // Test Just Now
-    // Test Seconds
+// Time Elapsed
+extension DateExtensionsTests {
+    func testTimeElapsedSeconds() {
+        let earlierDate = laterDate.removing(hour: 0, minute: 0, second: 2)
+        let timeElapsed = Date.timeElapsed(between: earlierDate, and: laterDate)
+        XCTAssertEqual(timeElapsed, "2s")
+    }
+
+    func testTimeElapsedMinutesSeconds() {
+        let earlierDate = laterDate.removing(hour: 0, minute: 12, second: 23)
+        let timeElapsed = Date.timeElapsed(between: earlierDate, and: laterDate)
+        XCTAssertEqual(timeElapsed, "12m23s")
+    }
+
+    func testTimeElapsedHoursMinutesSeconds() {
+        let earlierDate = laterDate.removing(hour: 3, minute: 12, second: 23)
+        let timeElapsed = Date.timeElapsed(between: earlierDate, and: laterDate)
+        XCTAssertEqual(timeElapsed, "3h12m23s")
+    }
+
+    func testTimeElapsedDaysHours() {
+        let earlierDate = laterDate.removing(numberOfDays: 5).removing(hour: 3, minute: 0, second: 0)
+        let timeElapsed = Date.timeElapsed(between: earlierDate, and: laterDate)
+        XCTAssertEqual(timeElapsed, "5d3h")
+    }
+
+    func testTimeElapsedDaysHoursSeconds() {
+        let earlierDate = laterDate.removing(numberOfDays: 5).removing(hour: 3, minute: 0, second: 23)
+        let timeElapsed = Date.timeElapsed(between: earlierDate, and: laterDate)
+        XCTAssertEqual(timeElapsed, "5d3h0m23s")
+    }
+
+    func testTimeElapsedDaysHoursMinutesSeconds() {
+        let earlierDate = laterDate.removing(numberOfDays: 5).removing(hour: 3, minute: 12, second: 23)
+        let timeElapsed = Date.timeElapsed(between: earlierDate, and: laterDate)
+        XCTAssertEqual(timeElapsed, "5d3h12m23s")
+    }
 }
 
 private extension Date {
     func removing(numberOfDays: Int) -> Date {
-        return Date.with(day: 20 - numberOfDays, month: 10, year: 2018, hour: 12, minute: 03, second: 14)!
+        let calendar = NSCalendar.current
+        let components = calendar.dateComponents([.day, .month, .year, .hour, .minute, .second], from: self)
+        return Date.with(day: components.day! - numberOfDays, month: components.month!, year: components.year!, hour: components.hour!, minute: components.minute!, second: components.second!)!
     }
 
     func removing(hour: Int, minute: Int, second: Int) -> Date {
-        return Date.with(day: 20, month: 10, year: 2018, hour: 12 - hour, minute: 03 - minute, second: 14 - second)!
+        let calendar = NSCalendar.current
+        let components = calendar.dateComponents([.day, .month, .year, .hour, .minute, .second], from: self)
+        return Date.with(day: components.day!, month: components.month!, year: components.year!, hour: components.hour! - hour, minute: components.minute! - minute, second: components.second! - second)!
     }
 }
