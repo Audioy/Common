@@ -22,7 +22,7 @@ extension DateExtensionsTests {
             .StringBuilder(for: earlierDate)
             .comparedToLaterDate(laterDate)
             .build()
-        XCTAssertEqual(dateString, "On 13/10/2018 at 12:03:14")
+        XCTAssertEqual(dateString, "on 13/10/2018 at 12:03:14")
     }
 
     func testStringBuilderWithNoThresholdForDateLessThanAWeekButMoreThanADay() {
@@ -31,7 +31,7 @@ extension DateExtensionsTests {
             .StringBuilder(for: earlierDate)
             .comparedToLaterDate(laterDate)
             .build()
-        XCTAssertEqual(dateString, "On Monday at 12:03:14")
+        XCTAssertEqual(dateString, "on Monday at 12:03:14")
     }
 
     func testStringBuilderWithNoThresholdForDateYesterday() {
@@ -40,7 +40,7 @@ extension DateExtensionsTests {
             .StringBuilder(for: earlierDate)
             .comparedToLaterDate(laterDate)
             .build()
-        XCTAssertEqual(dateString, "Yesterday at 12:03:14")
+        XCTAssertEqual(dateString, "yesterday at 12:03:14")
     }
 
     func testStringBuilderWithNoThresholdForDateToday() {
@@ -49,7 +49,7 @@ extension DateExtensionsTests {
             .StringBuilder(for: earlierDate)
             .comparedToLaterDate(laterDate)
             .build()
-        XCTAssertEqual(dateString, "Just now")
+        XCTAssertEqual(dateString, "just now")
     }
 
     // Threshold - No change to output
@@ -60,7 +60,7 @@ extension DateExtensionsTests {
             .comparedToLaterDate(laterDate)
             .withThreshold(.hour, maxValue: 3)
             .build()
-        XCTAssertEqual(dateString, "Just now")
+        XCTAssertEqual(dateString, "just now")
     }
 
     func testStringBuilderWithThresholdForDateAWeekOrOlder() {
@@ -70,7 +70,7 @@ extension DateExtensionsTests {
             .comparedToLaterDate(laterDate)
             .withThreshold(.hour, maxValue: 3)
             .build()
-        XCTAssertEqual(dateString, "On 13/10/2018 at 12:03:14")
+        XCTAssertEqual(dateString, "on 13/10/2018 at 12:03:14")
     }
 
     func testStringBuilderWithThresholdForDateLessThanAWeekButMoreThanADay() {
@@ -80,7 +80,7 @@ extension DateExtensionsTests {
             .comparedToLaterDate(laterDate)
             .withThreshold(.hour, maxValue: 3)
             .build()
-        XCTAssertEqual(dateString, "On Monday at 12:03:14")
+        XCTAssertEqual(dateString, "on Monday at 12:03:14")
     }
 
     func testStringBuilderWithThresholdForDateYesterday() {
@@ -90,7 +90,7 @@ extension DateExtensionsTests {
             .comparedToLaterDate(laterDate)
             .withThreshold(.hour, maxValue: 3)
             .build()
-        XCTAssertEqual(dateString, "Yesterday at 12:03:14")
+        XCTAssertEqual(dateString, "yesterday at 12:03:14")
     }
 
     // Threshold - Seconds
@@ -121,7 +121,7 @@ extension DateExtensionsTests {
             .comparedToLaterDate(laterDate)
             .withThreshold(.second, maxValue: 14)
             .build()
-        XCTAssertEqual(dateString, "Today at 12:03:00")
+        XCTAssertEqual(dateString, "today at 12:03:00")
     }
 
     // Threshold - Minutes
@@ -162,7 +162,7 @@ extension DateExtensionsTests {
             .comparedToLaterDate(laterDate)
             .withThreshold(.minute, maxValue: 3)
             .build()
-        XCTAssertEqual(dateString, "Today at 12:00:12")
+        XCTAssertEqual(dateString, "today at 12:00:12")
     }
 
     // Threshold - Hours
@@ -223,7 +223,7 @@ extension DateExtensionsTests {
             .comparedToLaterDate(laterDate)
             .withThreshold(.hour, maxValue: 3)
             .build()
-        XCTAssertEqual(dateString, "Today at 09:03:14")
+        XCTAssertEqual(dateString, "today at 09:03:14")
     }
 }
 

@@ -84,17 +84,17 @@ public extension Date {
         }
 
         private var stringForWeekDay: String {
-            return "On " + fromDate.dayOfTheWeek + " at " + fromDate.time
+            return "on " + fromDate.dayOfTheWeek + " at " + fromDate.time
         }
 
         private var stringForYesterday: String {
-            return "Yesterday at " + fromDate.time
+            return "yesterday at " + fromDate.time
         }
 
         private func stringForToday(withComponents components: DateComponents) -> String {
 
             if components.hour == 0 && components.minute == 0 && components.second == 0 {
-                return "Just now"
+                return "just now"
             }
 
             guard
@@ -104,7 +104,7 @@ public extension Date {
                 let minutes = components.minute,
                 let seconds = components.second
                 else {
-                    return "Today at " + fromDate.time
+                    return "today at " + fromDate.time
             }
 
             var withinThreshold = false
@@ -120,7 +120,7 @@ public extension Date {
             }
 
             guard withinThreshold else {
-                return "Today at " + fromDate.time
+                return "today at " + fromDate.time
             }
 
             switch thresholdComponent {
@@ -148,7 +148,7 @@ public extension Date {
         }
 
         private var stringForDefault: String {
-            return "On " + fromDate.date + " at " + fromDate.time
+            return "on " + fromDate.date + " at " + fromDate.time
         }
 
         private func stringFor(_ component: Calendar.Component, withValue value: Int) -> String {
@@ -252,13 +252,13 @@ public extension Date {
         if let second = components.second, second > 0 {
             returnedString.insert(contentsOf: "\(second)" + "s", at: returnedString.startIndex)
         }
-        if let minute = components.minute, (returnedString.count > 0 || minute > 0) {
+        if let minute = components.minute, (returnedString.count > 0 && (components.hour ?? 0 > 0) || minute > 0) {
             returnedString.insert(contentsOf: "\(minute)" + "m", at: returnedString.startIndex)
         }
-        if let hour = components.hour, (returnedString.count > 0 || hour > 0) {
+        if let hour = components.hour, (returnedString.count > 0 && (components.day ?? 0 > 0) || hour > 0) {
             returnedString.insert(contentsOf: "\(hour)" + "h", at: returnedString.startIndex)
         }
-        if let day = components.day, (returnedString.count > 0 || day > 0) {
+        if let day = components.day, day > 0 {
             returnedString.insert(contentsOf: "\(day)" + "d", at: returnedString.startIndex)
         }
 
